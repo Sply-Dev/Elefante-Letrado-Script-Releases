@@ -131,17 +131,17 @@
           width: 100%;
         }
 
-        /* Base do Painel e Cabeçalho (sem !important para permitir transições CSS fluídas no Firefox) */
+        /* Base do Painel e Cabeçalho (Transição ultra aveludada de 0.45s) */
         #ea-panel {
           position: fixed; top: 20px; right: 20px; z-index: 999999;
           background: #1e1e2e; color: #cdd6f4; font-family: monospace;
           border: 1px solid #313244; border-radius: 16px; padding: 20px;
           box-shadow: 0 12px 40px rgba(0,0,0,0.6); width: 380px;
           max-width: calc(100vw - 40px); display: flex; flex-direction: column;
-          transition: background 0.38s cubic-bezier(0.16, 1, 0.3, 1),
-                      padding 0.38s cubic-bezier(0.16, 1, 0.3, 1),
-                      border-radius 0.38s cubic-bezier(0.16, 1, 0.3, 1),
-                      box-shadow 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+          transition: background 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                      padding 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                      border-radius 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                      box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         #ea-drag-header {
@@ -149,18 +149,19 @@
           margin: -20px -20px 0 -20px; padding: 16px 20px 24px 20px;
           border-radius: 16px 16px 0 0; display: flex; justify-content: space-between;
           align-items: center; position: relative; z-index: 1;
-          transition: background 0.38s cubic-bezier(0.16, 1, 0.3, 1),
-                      padding 0.38s cubic-bezier(0.16, 1, 0.3, 1),
-                      margin 0.38s cubic-bezier(0.16, 1, 0.3, 1),
-                      border-radius 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+          transition: background 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                      padding 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                      margin 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                      border-radius 0.45s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* Estrutura do painel e animação de minimização */
+        /* Estrutura do painel e animação de minimização (Com efeito de dissolução e opacidade) */
         .ea-panel-content {
           overflow: hidden;
-          transition: max-height 0.38s cubic-bezier(0.16, 1, 0.3, 1),
-                      opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1),
-                      transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+          transition: max-height 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                      opacity 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+                      transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                      filter 0.38s cubic-bezier(0.16, 1, 0.3, 1);
           display: flex; flex-direction: column; gap: 10px;
           background: #1e1e2e; margin: -12px -20px -20px -20px;
           padding: 24px 20px 20px 20px; border-radius: 18px 18px 12px 12px;
@@ -171,13 +172,15 @@
         .ea-minimizing {
           max-height: 0 !important;
           opacity: 0 !important;
-          transform: translateY(-8px) scale(0.96) !important;
+          filter: blur(2px);
+          transform: translateY(-8px) scale(0.97) !important;
           pointer-events: none !important;
         }
 
         .ea-maximizing {
           max-height: 600px;
           opacity: 1;
+          filter: blur(0px);
           transform: translateY(0) scale(1);
         }
 
