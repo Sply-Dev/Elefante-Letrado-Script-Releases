@@ -131,8 +131,13 @@
           width: 100%;
         }
 
-        /* Estrutura do painel e animação de minimização */
+        /* Base do Painel e Cabeçalho (sem !important para permitir transições CSS fluídas no Firefox) */
         #ea-panel {
+          position: fixed; top: 20px; right: 20px; z-index: 999999;
+          background: #1e1e2e; color: #cdd6f4; font-family: monospace;
+          border: 1px solid #313244; border-radius: 16px; padding: 20px;
+          box-shadow: 0 12px 40px rgba(0,0,0,0.6); width: 380px;
+          max-width: calc(100vw - 40px); display: flex; flex-direction: column;
           transition: background 0.38s cubic-bezier(0.16, 1, 0.3, 1),
                       padding 0.38s cubic-bezier(0.16, 1, 0.3, 1),
                       border-radius 0.38s cubic-bezier(0.16, 1, 0.3, 1),
@@ -140,12 +145,17 @@
         }
 
         #ea-drag-header {
+          cursor: move; user-select: none; background: #11111b;
+          margin: -20px -20px 0 -20px; padding: 16px 20px 24px 20px;
+          border-radius: 16px 16px 0 0; display: flex; justify-content: space-between;
+          align-items: center; position: relative; z-index: 1;
           transition: background 0.38s cubic-bezier(0.16, 1, 0.3, 1),
                       padding 0.38s cubic-bezier(0.16, 1, 0.3, 1),
                       margin 0.38s cubic-bezier(0.16, 1, 0.3, 1),
                       border-radius 0.38s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
+        /* Estrutura do painel e animação de minimização */
         .ea-panel-content {
           overflow: hidden;
           transition: max-height 0.38s cubic-bezier(0.16, 1, 0.3, 1),
@@ -171,20 +181,20 @@
           transform: translateY(0) scale(1);
         }
 
-        /* Ajustes finos para o painel em estado minimizado / compacto */
+        /* Ajustes finos para o painel em estado minimizado / compacto (Transição sem trancos) */
         #ea-panel.ea-panel-collapsed {
-          background: #11111b !important;
-          padding: 0 !important;
-          border-radius: 16px !important;
-          overflow: hidden !important;
-          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5) !important;
+          background: #11111b;
+          padding: 0;
+          border-radius: 16px;
+          overflow: hidden;
+          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
         }
 
         #ea-panel.ea-panel-collapsed #ea-drag-header {
-          background: transparent !important;
-          margin: 0 !important;
-          padding: 14px 20px !important;
-          border-radius: 16px !important;
+          background: transparent;
+          margin: 0;
+          padding: 14px 20px;
+          border-radius: 16px;
         }
 
         #ea-panel.ea-panel-collapsed .ea-panel-content {
