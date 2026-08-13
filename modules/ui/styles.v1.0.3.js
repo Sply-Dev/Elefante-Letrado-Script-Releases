@@ -132,6 +132,20 @@
         }
 
         /* Estrutura do painel e animação de minimização */
+        #ea-panel {
+          transition: background 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+                      padding 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+                      border-radius 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+                      box-shadow 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        #ea-drag-header {
+          transition: background 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+                      padding 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+                      margin 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+                      border-radius 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
         .ea-panel-content {
           overflow: hidden;
           transition: max-height 0.38s cubic-bezier(0.16, 1, 0.3, 1),
