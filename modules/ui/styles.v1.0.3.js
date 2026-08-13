@@ -131,17 +131,16 @@
           width: 100%;
         }
 
-        /* Estrutura de minimização do painel */
+        /* Estrutura do painel e animação de minimização */
         .ea-panel-content {
           overflow: hidden;
           transition: max-height 0.38s cubic-bezier(0.16, 1, 0.3, 1),
                       opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1),
-                      transform 0.38s cubic-bezier(0.16, 1, 0.3, 1),
-                      padding 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+                      transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
           display: flex; flex-direction: column; gap: 10px;
-          background: #1e1e2e; margin: 0;
-          padding: 20px; border-radius: 0 0 16px 16px;
-          position: relative; z-index: 2;
+          background: #1e1e2e; margin: -12px -20px -20px -20px;
+          padding: 24px 20px 20px 20px; border-radius: 18px 18px 12px 12px;
+          position: relative; z-index: 2; box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.3);
           transform-origin: top center;
         }
 
@@ -149,10 +148,6 @@
           max-height: 0 !important;
           opacity: 0 !important;
           transform: translateY(-8px) scale(0.96) !important;
-          padding: 0 20px !important;
-          margin: 0 !important;
-          border: none !important;
-          box-shadow: none !important;
           pointer-events: none !important;
         }
 
@@ -160,6 +155,30 @@
           max-height: 600px;
           opacity: 1;
           transform: translateY(0) scale(1);
+        }
+
+        /* Ajustes finos para o painel em estado minimizado / compacto */
+        #ea-panel.ea-panel-collapsed {
+          background: #11111b !important;
+          padding: 0 !important;
+          border-radius: 16px !important;
+          overflow: hidden !important;
+          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5) !important;
+        }
+
+        #ea-panel.ea-panel-collapsed #ea-drag-header {
+          background: transparent !important;
+          margin: 0 !important;
+          padding: 14px 20px !important;
+          border-radius: 16px !important;
+        }
+
+        #ea-panel.ea-panel-collapsed .ea-panel-content {
+          margin: 0 !important;
+          padding: 0 !important;
+          box-shadow: none !important;
+          max-height: 0 !important;
+          opacity: 0 !important;
         }
       `;
       document.head.appendChild(estiloAnimacoes);
