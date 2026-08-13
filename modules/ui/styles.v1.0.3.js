@@ -150,9 +150,10 @@
           max-height: 0 !important;
           opacity: 0 !important;
           transform: translateY(-8px) scale(0.96) !important;
-          padding-top: 0 !important;
-          padding-bottom: 0 !important;
-          margin-bottom: 0 !important;
+          padding: 0 !important;
+          margin: 0 !important;
+          border: none !important;
+          box-shadow: none !important;
           pointer-events: none !important;
         }
 
@@ -176,6 +177,12 @@
           margin: 0 !important;
           padding: 14px 20px !important;
           border-radius: 16px !important;
+        }
+
+        #ea-panel.ea-panel-collapsed .ea-panel-content {
+          margin: 0 !important;
+          padding: 0 !important;
+          box-shadow: none !important;
         }
       `;
       document.head.appendChild(estiloAnimacoes);
