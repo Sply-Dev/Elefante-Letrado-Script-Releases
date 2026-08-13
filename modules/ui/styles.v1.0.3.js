@@ -164,16 +164,16 @@
 
         /* Ajustes finos para o painel em estado minimizado / compacto */
         #ea-panel.ea-panel-collapsed {
-          padding-bottom: 0 !important;
+          padding: 0 !important;
           border-radius: 16px !important;
           overflow: hidden !important;
           box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5) !important;
         }
 
         #ea-panel.ea-panel-collapsed #ea-drag-header {
-          padding: 12px 20px 12px 20px !important;
-          margin-bottom: -20px !important;
-          border-radius: 14px !important;
+          margin: 0 !important;
+          padding: 14px 20px !important;
+          border-radius: 16px !important;
         }
       `;
       document.head.appendChild(estiloAnimacoes);
