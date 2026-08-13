@@ -164,6 +164,7 @@
 
         /* Ajustes finos para o painel em estado minimizado / compacto */
         #ea-panel.ea-panel-collapsed {
+          background: #11111b !important;
           padding: 0 !important;
           border-radius: 16px !important;
           overflow: hidden !important;
@@ -171,6 +172,7 @@
         }
 
         #ea-panel.ea-panel-collapsed #ea-drag-header {
+          background: transparent !important;
           margin: 0 !important;
           padding: 14px 20px !important;
           border-radius: 16px !important;
