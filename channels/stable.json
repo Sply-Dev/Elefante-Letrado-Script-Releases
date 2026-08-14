@@ -39,8 +39,8 @@
       "depends": ["ai-prompts", "ai-parser"]
     },
     "ui": {
-      "file": "modules/ui/ui.v1.0.47.js",
-      "version": "1.0.47",
+      "file": "modules/ui/ui.v1.0.48.js",
+      "version": "1.0.48",
       "hash": "sha256-placeholder",
       "depends": ["ui-styles", "ui-icons"]
     },
