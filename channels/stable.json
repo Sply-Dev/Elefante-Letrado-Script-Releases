@@ -9,8 +9,8 @@
   },
   "modules": {
     "ui-styles": {
-      "file": "modules/ui/styles.v1.0.15.js",
-      "version": "1.0.15",
+      "file": "modules/ui/styles.v1.0.16.js",
+      "version": "1.0.16",
       "hash": "sha256-placeholder",
       "depends": []
     },
@@ -39,8 +39,8 @@
       "depends": ["ai-prompts", "ai-parser"]
     },
     "ui": {
-      "file": "modules/ui/ui.v1.0.27.js",
-      "version": "1.0.27",
+      "file": "modules/ui/ui.v1.0.28.js",
+      "version": "1.0.28",
       "hash": "sha256-placeholder",
       "depends": ["ui-styles", "ui-icons"]
     },
