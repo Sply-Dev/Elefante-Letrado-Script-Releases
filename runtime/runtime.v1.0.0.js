@@ -198,6 +198,20 @@
       return this.modules.get(name);
     }
 
+    mark(name) {
+      const monitor = this.getModule('diagnostics-monitor');
+      if (monitor && typeof monitor.mark === 'function') {
+        monitor.mark(name);
+      }
+    }
+
+    measure(name, startMark, endMark) {
+      const monitor = this.getModule('diagnostics-monitor');
+      if (monitor && typeof monitor.measure === 'function') {
+        monitor.measure(name, startMark, endMark);
+      }
+    }
+
     async bootFromManifest(manifest, baseUrl) {
       console.log(`\n======================================================`);
       console.log(`🚀 RUNTIME v${this.version} - BOOT DO MANIFESTO (${manifest.channel})`);

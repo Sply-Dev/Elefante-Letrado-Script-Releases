@@ -141,6 +141,9 @@
     },
 
     triggerPageTurn() {
+      const runtime = this.runtime;
+      if (runtime && runtime.mark) runtime.mark('reader:page-turn:start');
+
       const angular = this.runtime?.services?.angular;
       const readerView = angular?.getReaderView() || window.appComponent?._reader?.readerView;
 
@@ -149,6 +152,11 @@
         readerView.next();
       } else {
         console.warn('[📖 Reader] ⚠️ ReaderView nativo indisponível. Não foi possível avançar a página.');
+      }
+
+      if (runtime && runtime.mark) {
+        runtime.mark('reader:page-turn:end');
+        runtime.measure('reader:page-turn', 'reader:page-turn:start', 'reader:page-turn:end');
       }
     },
 
