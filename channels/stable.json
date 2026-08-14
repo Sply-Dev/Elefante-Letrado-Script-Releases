@@ -45,8 +45,8 @@
       "depends": ["ui-styles", "ui-icons"]
     },
     "diagnostics-monitor": {
-      "file": "modules/diagnostics/monitor.v1.0.1.js",
-      "version": "1.0.1",
+      "file": "modules/diagnostics/monitor.v1.0.2.js",
+      "version": "1.0.2",
       "hash": "sha256-placeholder",
       "depends": []
     },
