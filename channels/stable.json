@@ -9,8 +9,8 @@
   },
   "modules": {
     "ui-styles": {
-      "file": "modules/ui/styles.v1.0.24.js",
-      "version": "1.0.24",
+      "file": "modules/ui/styles.v1.0.25.js",
+      "version": "1.0.25",
       "hash": "sha256-placeholder",
       "depends": []
     },
