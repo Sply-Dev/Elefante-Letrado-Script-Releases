@@ -39,16 +39,10 @@
       "depends": ["ai-prompts", "ai-parser"]
     },
     "ui": {
-      "file": "modules/ui/ui.v1.0.57.js",
-      "version": "1.0.57",
+      "file": "modules/ui/ui.v1.0.58.js",
+      "version": "1.0.58",
       "hash": "sha256-placeholder",
       "depends": ["ui-styles", "ui-icons"]
-    },
-    "diagnostics-monitor": {
-      "file": "modules/diagnostics/monitor.v1.0.2.js",
-      "version": "1.0.2",
-      "hash": "sha256-placeholder",
-      "depends": []
     },
     "reader": {
       "file": "modules/reader/reader.v1.0.0.js",
