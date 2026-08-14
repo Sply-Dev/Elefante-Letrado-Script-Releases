@@ -15,8 +15,8 @@
       "depends": []
     },
     "ui-icons": {
-      "file": "modules/ui/icons.v1.0.3.js",
-      "version": "1.0.3",
+      "file": "modules/ui/icons.v1.0.4.js",
+      "version": "1.0.4",
       "hash": "sha256-placeholder",
       "depends": []
     },
