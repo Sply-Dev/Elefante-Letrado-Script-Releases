@@ -151,6 +151,10 @@
         },
         setAutoMinMin: (v) => _GM_setValue('autoMinMin', v),
         setAutoMaxMin: (v) => _GM_setValue('autoMaxMin', v),
+        getDiagMode: () => _GM_getValue('diagMode', 'OFF'),
+        setDiagMode: (m) => _GM_setValue('diagMode', m),
+        getDiagHUD: () => Boolean(_GM_getValue('diagHUD', false)),
+        setDiagHUD: (v) => _GM_setValue('diagHUD', Boolean(v)),
         resetAll: () => {
           _GM_setValue('apiKey', '');
           _GM_setValue('noAI', false);
