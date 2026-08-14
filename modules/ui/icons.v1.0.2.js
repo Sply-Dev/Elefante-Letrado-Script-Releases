@@ -1,5 +1,5 @@
 /**
- * Elefante Letrado-Script - UI SVG Icons v1.0.1
+ * Elefante Letrado-Script - UI SVG Icons v1.0.2
  */
 
 (function () {
