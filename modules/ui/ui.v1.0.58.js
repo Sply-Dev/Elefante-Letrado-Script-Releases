@@ -1,7 +1,10 @@
 /**
- * Elefante Letrado Script - Módulo UI v1.0.58
+ * Elefante Letrado Script - Módulo UI v1.0.59
  * Gerenciador de interface visual, renderizador de painel flutuante e formulários.
  * v1.0.58: Remoção da seção de diagnóstico da interface para manter UI limpa em produção.
+ * v1.0.59: Corrigido vazamento de listeners globais (mousemove/mouseup do drag e
+ *          click-outside do dropdown de config), que se acumulavam a cada
+ *          restart do módulo ou cada abertura da tela de Configurações.
  */
 
 (function () {
@@ -9,8 +12,15 @@
 
   const UIModule = {
     name: 'ui',
-    version: '1.0.58',
+    version: '1.0.59',
     depends: [],
+
+    // Referências aos handlers globais registrados, para poder removê-los em stop()
+    _dragMoveHandler: null,
+    _dragUpHandler: null,
+    _dragBound: false,
+    _configOutsideClickHandler: null,
+    _configOutsideClickBound: false,
 
     async init(runtime) {
       this.runtime = runtime;
@@ -44,6 +54,19 @@
       runtime.events.on('config:reset', () => {
         this.renderSetupScreen();
       });
+
+      // Listener único de "clicar fora fecha o dropdown", registrado uma vez.
+      // Antes, renderConfigScreen() registrava um novo listener a CADA abertura
+      // da tela de Configurações, empilhando um por visita (vazamento rápido,
+      // já que essa tela pode ser aberta e fechada várias vezes na sessão).
+      this._configOutsideClickHandler = (e) => {
+        const container = document.getElementById('ea-select-container');
+        if (container && !container.contains(e.target)) {
+          container.classList.remove('open');
+        }
+      };
+      document.addEventListener('click', this._configOutsideClickHandler);
+      this._configOutsideClickBound = true;
     },
 
     async start() {
@@ -69,6 +92,22 @@
     async stop() {
       const panel = document.getElementById('ea-panel');
       if (panel) panel.remove();
+
+      // Remove listeners globais registrados por createPanelShell(), evitando
+      // que se acumulem a cada novo start() nesta mesma sessão.
+      if (this._dragBound) {
+        if (this._dragMoveHandler) document.removeEventListener('mousemove', this._dragMoveHandler);
+        if (this._dragUpHandler) document.removeEventListener('mouseup', this._dragUpHandler);
+        this._dragMoveHandler = null;
+        this._dragUpHandler = null;
+        this._dragBound = false;
+      }
+
+      if (this._configOutsideClickBound) {
+        if (this._configOutsideClickHandler) document.removeEventListener('click', this._configOutsideClickHandler);
+        this._configOutsideClickHandler = null;
+        this._configOutsideClickBound = false;
+      }
     },
 
     // -------------------------------------------------------------
@@ -140,7 +179,10 @@
           });
         }
 
-        document.addEventListener('mousemove', e => {
+        // Handlers nomeados e guardados em `this` para poderem ser removidos em stop().
+        // Sem isso, cada ciclo stop()->start() do módulo empilhava um novo par de
+        // listeners globais no document, todos competindo entre si (vazamento).
+        this._dragMoveHandler = e => {
           if (!isDragging) return;
           let newLeft = e.clientX - offsetX;
           let newTop  = e.clientY - offsetY;
@@ -161,14 +203,18 @@
           if (!animFrameId) {
             animFrameId = requestAnimationFrame(updateDragPosition);
           }
-        });
+        };
 
-        document.addEventListener('mouseup', () => {
+        this._dragUpHandler = () => {
           if (isDragging) {
             isDragging = false;
             panel.classList.remove('ea-dragging');
           }
-        });
+        };
+
+        document.addEventListener('mousemove', this._dragMoveHandler);
+        document.addEventListener('mouseup', this._dragUpHandler);
+        this._dragBound = true;
       }
 
       // Lógica de Minimização (Animação exclusiva do ícone interno)
@@ -541,11 +587,8 @@
           container.classList.toggle('open');
         };
 
-        document.addEventListener('click', (e) => {
-          if (container && !container.contains(e.target)) {
-            container.classList.remove('open');
-          }
-        });
+        // Fechamento por clique-fora agora é tratado pelo listener único
+        // registrado em init() (this._configOutsideClickHandler).
 
         const optionEls = container.querySelectorAll('.ea-select-option');
         optionEls.forEach(opt => {
